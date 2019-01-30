@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+	<html>
+		<head>
+			<title>pink.</title>
+			<link rel="icon" href="favicon.ico" />
+			<meta charset="utf-8"/>
+			<meta name="description" content="" />
+			<meta name="keywords" content="" />
+			<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+			<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+			<link rel="stylesheet" type="text/css" href="css/style.css">
+		</head>
+
+		<body>
+			<div id="cursor_circle"></div>
+			<div id="cursor"></div>
+
+			<div id="search-box">
+				<input id="search" type="text" placeholder="Search..." autocomplete="off" />
+				<span></span>
+			</div>
+
+			<div id="social">
+				<a href="https://www.facebook.com" target="_newtab"><i class="fab fa-facebook-f"></i></a>
+				<a href="https://www.instagram.com" target="_newtab"><i class="fab fa-instagram"></i></a>
+				<i class="fas fa-heart"></i>
+				<i class="fas fa-feather-alt"></i>
+			</div>
+
+			<span id="logolineup"></span>
+			<div id="logobox"></div>
+			<img id="Logo" src="images/logo.png" alt="Logo" />
+			<span id="logolinedown"></span>
+
+			<div id="dots">
+				<div class="dot active" name='Home'></div>
+				<div class="dot" name='About'></div>
+				<div class="dot" name='Coffee'></div>
+				<div class="dot" name='Cafe'></div>
+				<div class="dot" name='Contact'></div>
+			</div>
+
+			<div id="Navigation">
+				<img id="navbgimg" src="images/coffee.png" alt="pink coffee watercolor" />
+				<ul>
+					<li name='Home'>Home</li>
+					<li name='About'>About us</li>
+					<li name='Coffee'>Coffee</li>
+					<li name='Cafe'>Cafe</li>
+					<li name='Contact'>Contact us</li>
+				</ul>
+			</div>
+			<div id="icon">
+				<span class="icon-menu first"></span>
+				<span class="icon-menu mid"></span>
+				<span class="icon-menu last"></span>
+			</div>
+
+			<div id="Home" class="activeDiv">
+				<img id="map" src="images/worldmap.png" alt="Pink world map" />
+				<h1 id="flamingo">FLAMINGO</h1>
+				<img id="pouch" src="images/pouch.png" alt="Pink pouch" />
+			</div>
+
+			<div id="About">
+				<h2 class="naslovtest">ABOUT US</h2>
+			</div>
+
+			<div id="Coffee">
+				<div id="changeState">
+					<span class="cube" title="Click to change the view type"></span>
+					<span class="cube" title="Click to change the view type"></span>
+					<span class="cube" title="Click to change the view type"></span>
+					<span class="cube" title="Click to change the view type"></span>
+				</div>
+				<div id="products">
+					<div class="product single activeProduct">Product 1</div>
+					<div class="product single">Product 2</div>
+					<div class="product single">Product 3</div>
+					<div class="product single">Product 4</div>
+					<div class="product single">Product 5</div>
+					<div class="product single">Product 6</div>
+				</div>
+			</div>
+
+			<div id="Cafe" >
+				<div id="imgF" class="flipp">
+					<div class="flippInside">
+						<div class="flippFront">
+							<img src="images/cafe1.jpg" alt="Pink cafe 1" />
+						</div>
+
+						<div class="flippBack">
+							Opis 1
+						</div>
+					</div>
+				</div>
+
+				<div id="imgL" class="flipp">
+					<div class="flippInside">
+						<div class="flippFront">
+							<img src="images/cafe2.jpg" alt="Pink cafe 2" />
+						</div>
+
+						<div class="flippBack">
+							Opis 3
+						</div>
+					</div>
+				</div>
+
+				<div id="imgM" class="flipp">
+					<div class="flippInside">
+						<div class="flippFront">
+							<img src="images/cafe3.jpg" alt="Pink cafe 3" />
+						</div>
+
+						<div class="flippBack">
+							Opis 2
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div id="Contact">
+				<h2 class="naslovtest">CONTACT US</h2>
+			</div>
+
+			<div id="page">
+				<p id="pageNo">01</p>
+				<p >/05</p>
+			</div>
+
+			<div id="hash">
+				<p><i class="fas fa-hashtag"></i><span>pink.</span>isfuture</p>
+			</div>
+
+			<span id="nextFrame"><div id="next"></div></span>
+			<span id="prevFrame"><div id="prev"></div></span>
+
+			<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+			<script type="text/javascript" src="js/main.js"></script>
+		</body>
+	</html>
