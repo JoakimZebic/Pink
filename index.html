@@ -7,8 +7,8 @@
 			<meta name="description" content="" />
 			<meta name="keywords" content="" />
 			<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-			<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
-			<link rel="stylesheet" type="text/css" href="css/style.css">
+			<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous" />
+			<link rel="stylesheet" type="text/css" href="css/style.css" />
 		</head>
 
 		<body>
@@ -33,11 +33,11 @@
 			<span id="logolinedown"></span>
 
 			<div id="dots">
-				<div class="dot active" name='Home'></div>
-				<div class="dot" name='About'></div>
-				<div class="dot" name='Coffee'></div>
-				<div class="dot" name='Cafe'></div>
-				<div class="dot" name='Contact'></div>
+				<div class="dot active" name='Home' data-number='01'></div>
+				<div class="dot" name='About' data-number='02'></div>
+				<div class="dot" name='Coffee' data-number='03'></div>
+				<div class="dot" name='Cafe' data-number='04'></div>
+				<div class="dot" name='Contact' data-number='05'></div>
 			</div>
 
 			<div id="Navigation">
@@ -67,20 +67,14 @@
 			</div>
 
 			<div id="Coffee">
+				<input type="text" id="filter" name="filter" placeholder="Type here..." />
 				<div id="changeState">
 					<span class="cube" title="Click to change the view type"></span>
 					<span class="cube" title="Click to change the view type"></span>
 					<span class="cube" title="Click to change the view type"></span>
 					<span class="cube" title="Click to change the view type"></span>
 				</div>
-				<div id="products">
-					<div class="product single activeProduct">Product 1</div>
-					<div class="product single">Product 2</div>
-					<div class="product single">Product 3</div>
-					<div class="product single">Product 4</div>
-					<div class="product single">Product 5</div>
-					<div class="product single">Product 6</div>
-				</div>
+				<div id="products"></div>
 			</div>
 
 			<div id="Cafe" >

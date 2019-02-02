@@ -1147,11 +1147,38 @@ body{
 	height: 100%;
 	display: flex;
 	flex-wrap: wrap;
-	justify-content: space-around;
 	padding: 8vh 2vh 2vh 2vh;
 }
 
-.naslovtest, .product.single{ 
+.product{
+	position: relative;
+}
+
+#filter{
+	display: none;
+	position: fixed;
+    border: none;
+    background: transparent;
+    color: #fff;
+    top: 0;
+    left: 0;
+    padding: 10px;
+    font-family: PTS;
+	border-bottom: 3px solid pink;
+	margin-left: 3vw;
+	font-size: 1.1rem;
+}
+
+#filter:focus{
+	outline: none;
+}
+
+#filter::placeholder{
+	color: #ccc;
+}
+
+/* single */
+.product.single{ 
 	color: #fff;
 	font-family: PBS;
 	font-size: 5rem;
@@ -1166,6 +1193,8 @@ body{
 }
 
 .product.single.activeProduct{
+	width: 100%;
+	height: 100%;
 	display: block;
 	animation: fade-in 1.2s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
 }
@@ -1177,17 +1206,105 @@ body{
 	100% {
 	  opacity: 1;
 	}
-  }
-
-.product.grid{
-	width: 27%;
-	margin: 10px 0px 10px 0px;
-	padding: 10px;
-	border: solid;
 }
 
-.product img{
-	height: 40%;
+.product.single h4{
+	position: fixed;
+    top: 3vh;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.product.single img{
+	height: 85vh;
+    position: fixed;
+    top: 5vh;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.product.single .rate{
+	position: fixed;
+    font-size: 3rem;
+    left: 54vw;
+    top: 45vh
+}
+
+.product.single .price{
+	position: fixed;
+    font-size: 3rem;
+    left: 54vw;
+    top: 30vh
+}
+
+.product.single .neto{
+	position: fixed;
+    font-size: 3rem;
+    left: 54vw;
+    top: 65vh
+}
+
+.product.single .desc{
+	position: fixed;
+    font-size: 1.8rem;
+    left: 0;
+    top: 30vh;
+    width: 25vw;
+    text-align: right;
+}
+
+/* grid */
+.product.grid{
+	width: 19%;
+	height: 30%;
+    margin: 10px 0px 10px 0px;
+	padding: 10px;
+	border-radius: 1vh;
+	overflow: hidden;
+	margin-right: 1vh;
+}
+
+.product.grid:hover{
+	background-color: #252525;
+	transition: .5s;
+}
+
+.product.grid .neto, .product.grid .desc{
+	display: none;
+}
+
+.product.grid h4{
+	width: 35%;
+    text-align: right;
+    position: absolute;
+    color: #fff;
+    font-family: PBS;
+    right: 1vw;
+    font-size: 3vh;
+    border-bottom: 2px solid pink;
+}
+
+.product.grid img{
+	height: 120%;
+    position: absolute;
+    left: -4vw;
+    top: -2vh;
+}
+
+.product.grid .price {
+    position: absolute;
+    font-family: PBS;
+    color: #fff;
+    right: 1vw;
+    top: 9vh;
+}
+
+.product.grid .rate{
+	position: absolute;
+    font-family: PBS;
+    color: #fff;
+	right: 1vw;
+	top: 13vh;
 }
 
 #changeState{

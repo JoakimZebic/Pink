@@ -3,11 +3,38 @@ $(document).mousemove(function(e){
 	$('#cursor').css({left: e.pageX,top: e.pageY});
 });
 
-/******* AJAX REQUEST ********/
+window.onload = function(){
+	showAll();
+}
 
+var productsCurrent;
 
-/******* EFFECTS ********/
-$(document).ready(function(){	
+$(document).ready(function(){
+	/******* Filter ********/
+	$('#filter').keyup(function(){
+		$.ajax({
+			url: 'data/products.json',
+			method: 'POST',
+			datatype: 'json',
+			success: function(data){
+				productsCurrent = data;
+				var filterVal = $('#filter').val();
+				data= data.filter(function(el) {
+					if (el.name.toUpperCase().indexOf(filterVal.trim().toUpperCase()) != -1) {
+					  return el;
+					};
+				});
+				showDataGrid(data);
+				$('.product:first').addClass('activeProduct');
+				addClickProduct();
+			},
+			error: function(xhr, status, error){
+				console.log(error);
+			}
+		})
+	});
+
+	/******* EFFECTS ********/
 	$('#Navigation').animate({clipPath: 'polygon(0% 0%, 100% 0, 100% 50%, 100% 100%, 0% 100%)'},1000);
 
 	$("#social i").hover(
@@ -119,6 +146,8 @@ $(document).ready(function(){
 	function DOT(){
 		for(var i=0; i<dots.length; i++)if($(dots[i]).hasClass("active"))$(dots[i]).removeClass("active");
 		$(this).addClass("active");
+		var num = $(this).attr('data-number');
+		document.querySelector('#pageNo').innerHTML=num;
 	}
 
 	$("#Logo").hover(
@@ -227,11 +256,13 @@ $(document).ready(function(){
 			$('.cube').css({width: '8px', height: '8px'});
 			$('#products').addClass('grid');
 			$('.product').removeClass('single').addClass('grid');
+			$('#filter').css({display: 'block'});
 			grid=true;
 		}else{
 			$('.cube').css({width: '1vw', height: '1vw'});
 			$('#products').removeClass();
 			$('.product').removeClass('grid').addClass('single');
+			$('#filter').css({display: 'none'});
 			grid=false;
 		}
 	});
@@ -249,10 +280,64 @@ $(document).ready(function(){
 			$('.cube').removeClass('hoverSingle').removeClass('hoverGrid');
 		});
 
-	$('.product').click(function(){
-		$('.product').removeClass('activeProduct');
-		$(this).addClass('activeProduct');
-		$('#changeState').click();
-	});
+	addClickProduct();
 });
 
+function showAll(){
+	$.ajax({
+		url: 'data/products.json',
+		method: 'POST',
+		datatype: 'json',
+		success: function(data){
+			productsCurrent = data;
+			dataHtml = '';
+			for(x of data){
+				dataHtml += `
+				<div class="product single">
+					<h4>${x.name}</h4>
+					<img src='${x.img.src}' alt='${x.img.alt}' />
+					<p class='price'>Price: ${x.price}$</p>
+					<p class='rate'>${x.grade} ❤</p>
+					<p class='neto'>Neto: ${x.neto}</p>
+					<p class='desc'>${x.desc}</p>
+				</div>
+				`;
+			}
+			document.querySelector('#products').innerHTML = dataHtml;
+			$('.product:first').addClass('activeProduct');
+		},
+		error: function(xhr, status, error){
+			console.log(error);
+		}
+	});
+}
+
+function showDataGrid(data){
+	dataHtml = '';
+	for(x of data){
+		dataHtml += `
+		<div class="product grid">
+			<h4>${x.name}</h4>
+			<img src='${x.img.src}' alt='${x.img.alt}' />
+			<p class='price'>Price: ${x.price}$</p>
+			<p class='rate'>${x.grade} ❤</p>
+			<p class='neto'>Neto: ${x.neto}</p>
+			<p class='desc'>${x.desc}</p>
+		</div>
+		`;
+	}
+	document.querySelector('#products').innerHTML = dataHtml;
+};
+
+function addClickProduct(){
+	setTimeout(function(){
+		$('.product').click(function(){
+			if($(this).hasClass('grid')){
+				$('.product').removeClass('activeProduct');
+				$(this).addClass('activeProduct');
+				$('#changeState').click();
+			}
+			else return;
+		});
+	}, 100);
+}
