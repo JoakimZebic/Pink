@@ -1118,12 +1118,20 @@ body{
 }
 
 .flippBack{
-    width: 30vw;
+	width: 30vw;
     height: 55vh;
     transform: rotateX(180deg);
     background: #fff;
     backface-visibility: hidden;
     z-index: 1;
+    font-family: PTS;
+    padding-top: 10vh;
+    font-size: 4vh;
+    color: #252525;
+}
+
+.flippBack span{
+	color: #ff8ddc;
 }
 
 .flippFront{
@@ -1274,7 +1282,7 @@ body{
 }
 
 .product.grid h4{
-	width: 35%;
+	width: 45%;
     text-align: right;
     position: absolute;
     color: #fff;
@@ -1347,4 +1355,136 @@ body{
 .cube:last-of-type{
 	top: 1vw;
 	left: 1vw;
+}
+
+#About:before{
+	content: '';
+    position: absolute;
+    width: 28vw;
+    height: 28vw;
+    top: 5vh;
+    left: 7vw;
+    border: 20px solid #ff8ddc;
+    opacity: 0.6;
+    transform: rotate(7deg);
+    z-index: -1;
+}
+
+#About h2{
+	color: #fff;
+	font-family: PTS;
+	justify-content: center;
+	text-align: center;
+	width: 70%;
+	margin: 19vh auto;
+	font-size: 5vh;
+	text-shadow: 2px 2px 5px #252525;
+}
+
+#About h2 span{
+	color: #ff8ddc;
+}
+
+/********FORM************/
+
+form{
+    position: fixed;
+    width: 35vw;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.formHolder{
+    display: flex;
+    width: 100%;
+}
+
+.formImg{
+    width: 15%;
+    border-bottom: 2px solid #fff;
+    height: 8vh;
+}
+
+.formImg i{
+    display: block;
+    width: 4vh;
+    margin: 10px auto 0;
+    font-size: 4vh;
+    color: #FFCBFF;
+}
+
+form input{
+    width: 100%;
+    margin-bottom: 5vh;
+    height: 8vh;
+    padding: 1.5vh;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid #fff;
+    font-size: 1rem;
+    font-family: PTS;
+    color: #fff;
+}
+
+#subject{
+    margin-bottom: 0px;
+    border:none;
+    border-top: 2px solid #fff;
+    border-right: 2px solid #fff;
+}
+
+#msgImg{
+    border: none;
+    border-top: 2px solid #fff;
+    border-left: 2px solid #fff;
+}
+
+#msgHol{
+    margin-top: 2vh;
+}
+
+#message{
+    width: 100%;
+    height: 20vh;
+    background: transparent;
+    border: 2px solid #fff;
+    border-top: none;
+    padding: 1.5vh;
+    font-size: 1.3rem;
+    font-family: PTS;
+    color: #fff;
+    resize: none;
+    transition: 0.5s;
+}
+
+#submit{
+    width: 40%;
+    height: 10vh;
+    margin-top: 5vh;
+    color: #FFCBFF;
+    border-bottom: 2px solid #fff;
+    font-size: 5vh;
+    padding-top: 2.5vh;
+    text-align: center;
+    transition: 0.5s;
+}
+
+#submit:hover{
+    background-color: #fff;
+    color: #ff8ddc;
+    border-color: transparent;
+    box-shadow: 2px 2px 2px #ff8ddc;
+}
+
+form input:focus, #message:focus{
+    outline: none;
+}
+
+::placeholder{
+    font-family: PTS;
+    color: rgba(255,255,255,0.5);
 }

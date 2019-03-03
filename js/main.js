@@ -281,6 +281,133 @@ $(document).ready(function(){
 		});
 
 	addClickProduct();
+
+	// Forma
+var name= $('#fullName');
+var nameRe = /^[A-Z][a-z]{2,}(\s[A-Z][a-z]{2,}){1,}$/;
+var email= $('#email');
+var emailRe= /^[\w\d\.\_\-]+\@[\w\d\.\-]+\.\w{2,}$/;
+var subject = $('#subject');
+var msg = $('#message');
+
+$('#submit').click(function(){
+	var flag = true;
+	var formData = [];
+
+	if(!nameRe.test(name.val())){
+		name.css("borderBottomColor", "crimson");
+		$(".formImg:eq(0)").css("borderBottomColor", "crimson").html("<i class='fas fa-times'></i>");
+		$("form i:eq(0)").css("color","crimson");
+		flag=false;
+	}
+	else{
+		name.css("borderBottomColor", "#fff");
+		$(".formImg:eq(0)").css("borderBottomColor", "#fff").html("<i class='fas fa-user'></i>");
+		$("form i:eq(0)").css("color","#FFCBFF");
+		formData.push(name.val().trim());
+	}
+
+	if(!emailRe.test(email.val())){
+		email.css("borderBottomColor", "crimson");
+		$(".formImg:eq(1)").css("borderBottomColor", "crimson").html("<i class='fas fa-times'></i>");
+		$("form i:eq(1)").css("color","crimson");
+		flag=false;
+	}
+	else{
+		email.css("borderBottomColor", "#fff");
+		$(".formImg:eq(1)").css("borderBottomColor", "#fff").html("<i class='fas fa-at'></i>");
+		$("form i:eq(1)").css("color","#FFCBFF");
+		formData.push(email.val().trim());
+	}
+
+	if(subject.val().trim() != ''){
+		formData.push(subject.val().trim())
+	}
+	else{
+		subject.val('');
+	}
+
+	if(msg.val().trim()==""){
+		msg.val("");
+		msg.css("borderColor", "crimson");
+		subject.css("borderColor", "crimson")
+		$(".formImg:eq(2)").css("borderColor", "crimson").html("<i class='fas fa-times'></i>");
+		$("form i:eq(2)").css("color","crimson");
+		flag=false;
+	}
+	else{
+		msg.css("borderColor", "#fff");
+		subject.css("borderColor", "#fff")
+		$(".formImg:eq(2)").css("borderColor", "#fff").html("<i class='fas fa-pen'></i>");
+		$("form i:eq(2)").css("color","#FFCBFF");
+		formData.push(msg.val().trim());
+	}
+
+	if(flag){
+		console.log(formData);
+		name.val("");
+		email.val("");
+		subject.val("");
+		msg.val("");
+		$('#submit i').removeClass('fa-paper-plane').addClass('fa-check');
+		setTimeout(function(){
+			$('#submit i').removeClass('fa-check').addClass('fa-paper-plane');
+		},1500);
+	}
+});
+
+$('#fullName').blur(function(){
+	if(!nameRe.test(name.val())){
+		name.css("borderBottomColor", "crimson");
+		$(".formImg:eq(0)").css("borderBottomColor", "crimson").html("<i class='fas fa-times'></i>");
+		$("form i:eq(0)").css("color","crimson");
+	}
+	else{
+		name.css("borderBottomColor", "#fff");
+		$(".formImg:eq(0)").css("borderBottomColor", "#fff").html("<i class='fas fa-user'></i>");
+		$("form i:eq(0)").css("color","#FFCBFF");
+	}
+});
+
+$('#email').blur(function(){
+	if(!emailRe.test(email.val())){
+		email.css("borderBottomColor", "crimson");
+		$(".formImg:eq(1)").css("borderBottomColor", "crimson").html("<i class='fas fa-times'></i>");
+		$("form i:eq(1)").css("color","crimson");
+	}
+	else{
+		email.css("borderBottomColor", "#fff");
+		$(".formImg:eq(1)").css("borderBottomColor", "#fff").html("<i class='fas fa-at'></i>");
+		$("form i:eq(1)").css("color","#FFCBFF");
+	}
+});
+
+$('#subject').blur(function(){
+	if($(this).val().trim() == ''){
+		$(this).val('');
+	}
+	else{
+		$(this).val($(this).val().trim());
+	}
+});
+
+$('#message').blur(function(){
+	if($(this).val().trim()==""){
+		$(this).val("");
+		$(this).css("borderColor", "crimson");
+		$('#subject').css("borderColor", "crimson")
+		$(".formImg:eq(2)").css("borderColor", "crimson").html("<i class='fas fa-times'></i>");
+		$("form i:eq(2)").css("color","crimson");
+	}
+	else{
+		$(this).val($(this).val().trim());
+		$(this).css("borderColor", "#fff");
+		$('#subject').css("borderColor", "#fff")
+		$(".formImg:eq(2)").css("borderColor", "#fff").html("<i class='fas fa-pen'></i>");
+		$("form i:eq(2)").css("color","#FFCBFF");
+	}
+});
+
 });
 
 function showAll(){
@@ -298,7 +425,7 @@ function showAll(){
 					<img src='${x.img.src}' alt='${x.img.alt}' />
 					<p class='price'>Price: ${x.price}$</p>
 					<p class='rate'>${x.grade} ❤</p>
-					<p class='neto'>Neto: ${x.neto}</p>
+					<p class='neto'>Neto: ${x.neto}kg</p>
 					<p class='desc'>${x.desc}</p>
 				</div>
 				`;
@@ -321,7 +448,7 @@ function showDataGrid(data){
 			<img src='${x.img.src}' alt='${x.img.alt}' />
 			<p class='price'>Price: ${x.price}$</p>
 			<p class='rate'>${x.grade} ❤</p>
-			<p class='neto'>Neto: ${x.neto}</p>
+			<p class='neto'>Neto: ${x.neto}kg</p>
 			<p class='desc'>${x.desc}</p>
 		</div>
 		`;
@@ -341,3 +468,4 @@ function addClickProduct(){
 		});
 	}, 100);
 }
+
