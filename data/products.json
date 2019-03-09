@@ -19,7 +19,7 @@
             "src" : "images/babyBluePouch.png",
             "alt": "Skydive pouch"
         },
-        "desc" : "Some description",
+        "desc" : "Some description that describes this product and some of it's features, etc...",
         "grade" : 4.9,
         "neto" : 1
     },
@@ -31,7 +31,7 @@
             "src" : "images/silverPouch.png",
             "alt": "Silver pouch"
         },
-        "desc" : "Some description",
+        "desc" : "Some description that describes this product and some of it's features, etc...",
         "grade" : 4.1,
         "neto" : 1
     },
@@ -43,7 +43,7 @@
             "src" : "images/galaxyPouch.png",
             "alt": "Galaxxxy pouch"
         },
-        "desc" : "Some description",
+        "desc" : "Some description that describes this product and some of it's features, etc...",
         "grade" : 4.4,
         "neto" : 1
     },
@@ -55,7 +55,7 @@
             "src" : "images/babyPinkPouch.png",
             "alt": "Pinky Cloud pouch"
         },
-        "desc" : "Some description",
+        "desc" : "Some description that describes this product and some of it's features, etc...",
         "grade" : 4.3,
         "neto" : 1
     },
@@ -67,7 +67,7 @@
             "src" : "images/aquaPouch.png",
             "alt": "Acquaticafe pouch"
         },
-        "desc" : "Some description",
+        "desc" : "Some description that describes this product and some of it's features, etc...",
         "grade" : 4.9,
         "neto" : 1
     },
@@ -79,7 +79,7 @@
             "src" : "images/sunPouch.png",
             "alt": "Sunrise pouch"
         },
-        "desc" : "Some description",
+        "desc" : "Some description that describes this product and some of it's features, etc...",
         "grade" : 3.5,
         "neto" : 1
     },
@@ -91,7 +91,7 @@
             "src" : "images/hippiePouch.png",
             "alt": "Dragonsight pouch"
         },
-        "desc" : "Some description",
+        "desc" : "Some description that describes this product and some of it's features, etc...",
         "grade" : 4.2,
         "neto" : 1
     },
@@ -103,7 +103,7 @@
             "src" : "images/chokoPouch.png",
             "alt": "Chocoffee pouch"
         },
-        "desc" : "Some description",
+        "desc" : "Some description that describes this product and some of it's features, etc...",
         "grade" : 4.9,
         "neto" : 1
     },
@@ -115,7 +115,7 @@
             "src" : "images/goldenPouch.png",
             "alt": "Royal X1 pouch"
         },
-        "desc" : "Some description",
+        "desc" : "Some description that describes this product and some of it's features, etc...",
         "grade" : 2.3,
         "neto" : 1
     },
@@ -127,7 +127,7 @@
             "src" : "images/bluePouch.png",
             "alt": "All Blue pouch"
         },
-        "desc" : "Some description",
+        "desc" : "Some description that describes this product and some of it's features, etc...",
         "grade" : 3.1,
         "neto" : 1
     },
@@ -139,7 +139,7 @@
             "src" : "images/yellowPouch.png",
             "alt": "Bannannaa pouch"
         },
-        "desc" : "Some description",
+        "desc" : "Some description that describes this product and some of it's features, etc...",
         "grade" : 4.3,
         "neto" : 1
     },
@@ -151,7 +151,7 @@
             "src" : "images/redPouch.png",
             "alt": "Eruptica pouch"
         },
-        "desc" : "some description",
+        "desc" : "Some description that describes this product and some of it's features, etc...",
         "grade" : 3.8,
         "neto" : 1
     },
@@ -163,7 +163,7 @@
             "src" : "images/blackPouch.png",
             "alt": "Original pouch"
         },
-        "desc" : "Some description",
+        "desc" : "Some description that describes this product and some of it's features, etc...",
         "grade" : 4.7,
         "neto" : 1
     },
@@ -175,9 +175,8 @@
             "src" : "images/renkPouch.png",
             "alt": "woowffee pouch"
         },
-        "desc" : "Some description",
+        "desc" : "Some description that describes this product and some of it's features, etc...",
         "grade" : 4.5,
         "neto" : 1
-
     }
 ]

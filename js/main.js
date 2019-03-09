@@ -3,35 +3,205 @@ $(document).mousemove(function(e){
 	$('#cursor').css({left: e.pageX,top: e.pageY});
 });
 
-window.onload = function(){
-	showAll();
-}
-
-var productsCurrent;
-
 $(document).ready(function(){
-	/******* Filter ********/
-	$('#filter').keyup(function(){
+	showAll();
+
+	var current;
+	function SaveCurrentProducts(data){
+		current=data;
+	}
+
+	function showAll(){
 		$.ajax({
 			url: 'data/products.json',
 			method: 'POST',
 			datatype: 'json',
 			success: function(data){
-				productsCurrent = data;
-				var filterVal = $('#filter').val();
-				data= data.filter(function(el) {
-					if (el.name.toUpperCase().indexOf(filterVal.trim().toUpperCase()) != -1) {
-					  return el;
-					};
-				});
-				showDataGrid(data);
+				SaveCurrentProducts(data);
+				dataHtml = '';
+				for(x of data){
+					dataHtml += `
+					<div class="product single">
+						<h4>${x.name}</h4>
+						<img src='${x.img.src}' alt='${x.img.alt}' />
+						<p class='price'>Price: ${x.price}$</p>
+						<p class='rate'>${x.grade} <span class='fav' data-id='${x.id}'>❤</span></p>
+						<p class='neto'>Neto: ${x.neto}kg</p>
+						<p class='desc'>${x.desc}</p>
+					</div>
+					`;
+				}
+
+				var favoritesLS = getFavs();
+
+				setTimeout(function(){
+					if(favoritesLS){
+						addFavoritedClass(favoritesLS);
+					}
+				},100);
+
+				document.querySelector('#products').innerHTML = dataHtml;
 				$('.product:first').addClass('activeProduct');
-				addClickProduct();
+				$(".fav").click(addToFav);
 			},
 			error: function(xhr, status, error){
 				console.log(error);
 			}
-		})
+		});
+	}
+	
+	function showDataGrid(data){
+		dataHtml = '';
+		for(x of data){
+			dataHtml += `
+			<div class="product grid">
+				<h4>${x.name}</h4>
+				<img src='${x.img.src}' alt='${x.img.alt}' />
+				<p class='price'>Price: ${x.price}$</p>
+				<p class='rate'>${x.grade} <span class='fav' data-id='${x.id}'>❤</span></p>
+				<p class='neto'>Neto: ${x.neto}kg</p>
+				<p class='desc'>${x.desc}</p>
+			</div>
+			`;
+		}
+
+		var favoritesLS = getFavs();
+
+		setTimeout(function(){
+			if(favoritesLS){
+				addFavoritedClass(favoritesLS);
+			}
+		},100);
+
+		document.querySelector('#products').innerHTML = dataHtml;
+		$(".fav").click(addToFav);
+	};
+
+
+	function showFav(data){
+		dataHtml = '';
+		for(x of data){
+			dataHtml += `
+			<div class="product single">
+				<h4>${x.name}</h4>
+				<img src='${x.img.src}' alt='${x.img.alt}' />
+				<p class='price'>Price: ${x.price}$</p>
+				<p class='rate'>${x.grade} <span class='fav' data-id='${x.id}'>❤</span></p>
+				<p class='neto'>Neto: ${x.neto}kg</p>
+				<p class='desc'>${x.desc}</p>
+			</div>
+			`;
+		}
+		document.querySelector('#products').innerHTML = dataHtml;
+		$('.product:first').addClass('activeProduct');
+		$(".fav").click(addToFav);
+		grid=false;
+	};
+	
+	function addClickProduct(){
+		setTimeout(function(){
+			$('.product').click(function(){
+				if($(this).hasClass('grid')){
+					$('.product').removeClass('activeProduct');
+					$(this).addClass('activeProduct');
+					$('#changeState').click();
+				}
+				else return;
+			});
+		}, 100);
+	}
+
+
+
+	/******* Filter ********/
+	$('#filter').keyup(function(){
+		
+		var data = current;
+		var filterVal = $('#filter').val();
+		data= data.filter(function(el) {
+			if (el.name.toUpperCase().indexOf(filterVal.trim().toUpperCase()) != -1) {
+				return el;
+			};
+		});
+		showDataGrid(data);
+		$('.product:first').addClass('activeProduct');
+		addClickProduct();
+		SaveCurrentProducts(data);
+
+		if($('#filter').val()==""){
+			showAll();
+			$('.cube').css({width: '1vw', height: '1vw'});
+			$('#filter').css({display: 'none'});
+			$('#sort').css({display: 'none'});
+			grid=false;
+		}
+		
+	})
+
+	/**************** SORT ******************/
+
+	$('#sort').click(function(){
+		
+		var data = current;
+		data = data.sort(function(a,b){
+			return a.price-b.price;
+		});
+		showDataGrid(data);
+		$('.product:first').addClass('activeProduct');
+		addClickProduct();
+		SaveCurrentProducts(data);
+	})
+
+	/***************** FAVOURITES ********************/
+	var favClicked = false;
+	$('#favs').click(function(){
+		if(!favClicked){
+			var favoritesLS = getFavs();
+				
+			$.ajax({
+				url: 'data/products.json',
+				method: 'POST',
+				datatype: 'json',
+				success: function(data){
+					data = data.filter(f => {
+							for(let fav of favoritesLS)
+							{
+								if(f.id == fav.id){
+									return true;
+								}
+							}
+							return false;
+						});
+					showFav(data);
+					$('.product:first').addClass('activeProduct');
+					addClickProduct();
+
+					setTimeout(function(){
+						if(favoritesLS){
+							addFavoritedClass(favoritesLS);
+						}
+					},100);
+					SaveCurrentProducts(data);
+				},
+				error: function(xhr, status, error){
+					console.log(error);
+				}
+			})
+
+			$('.dot:eq(2)').click();
+			$('.cube').css({width: '1vw', height: '1vw'});
+			$('#filter').css({display: 'none'});
+			$('#sort').css({display: 'none'});
+
+			favClicked=true;
+		}
+		else{
+			showAll();
+			favClicked = false;
+			$('.cube').css({width: '1vw', height: '1vw'});
+			$('#filter').css({display: 'none'});
+			$('#sort').css({display: 'none'});
+		}
 	});
 
 	/******* EFFECTS ********/
@@ -175,7 +345,6 @@ $(document).ready(function(){
 	);
 
 	var flipps = $('.flippInside');
-	console.log(flipps)
 	$('#Cafe img').click(function(){
 		if($(this).parent().parent().hasClass('imgactive')){
 			$(this).parent().parent().removeClass('imgactive');
@@ -257,16 +426,18 @@ $(document).ready(function(){
 			$('#products').addClass('grid');
 			$('.product').removeClass('single').addClass('grid');
 			$('#filter').css({display: 'block'});
+			$('#sort').css({display: 'block'});
 			grid=true;
 		}else{
 			$('.cube').css({width: '1vw', height: '1vw'});
 			$('#products').removeClass();
 			$('.product').removeClass('grid').addClass('single');
 			$('#filter').css({display: 'none'});
+			$('#sort').css({display: 'none'});
 			grid=false;
 		}
 	});
-	console.log($('.cube').css('width'));
+
 	$('#changeState').hover(
 		function(){
 			if($('.cube').css('width')!='8px'){
@@ -283,189 +454,197 @@ $(document).ready(function(){
 	addClickProduct();
 
 	// Forma
-var name= $('#fullName');
-var nameRe = /^[A-Z][a-z]{2,}(\s[A-Z][a-z]{2,}){1,}$/;
-var email= $('#email');
-var emailRe= /^[\w\d\.\_\-]+\@[\w\d\.\-]+\.\w{2,}$/;
-var subject = $('#subject');
-var msg = $('#message');
+	var name= $('#fullName');
+	var nameRe = /^[A-Z][a-z]{2,}(\s[A-Z][a-z]{2,}){1,}$/;
+	var email= $('#email');
+	var emailRe= /^[\w\d\.\_\-]+\@[\w\d\.\-]+\.\w{2,}$/;
+	var subject = $('#subject');
+	var msg = $('#message');
 
-$('#submit').click(function(){
-	var flag = true;
-	var formData = [];
+	$('#submit').click(function(){
+		var flag = true;
+		var formData = [];
 
-	if(!nameRe.test(name.val())){
-		name.css("borderBottomColor", "crimson");
-		$(".formImg:eq(0)").css("borderBottomColor", "crimson").html("<i class='fas fa-times'></i>");
-		$("form i:eq(0)").css("color","crimson");
-		flag=false;
-	}
-	else{
-		name.css("borderBottomColor", "#fff");
-		$(".formImg:eq(0)").css("borderBottomColor", "#fff").html("<i class='fas fa-user'></i>");
-		$("form i:eq(0)").css("color","#FFCBFF");
-		formData.push(name.val().trim());
-	}
+		if(!nameRe.test(name.val())){
+			name.css("borderBottomColor", "crimson");
+			$(".formImg:eq(0)").css("borderBottomColor", "crimson").html("<i class='fas fa-times'></i>");
+			$("form i:eq(0)").css("color","crimson");
+			flag=false;
+		}
+		else{
+			name.css("borderBottomColor", "#fff");
+			$(".formImg:eq(0)").css("borderBottomColor", "#fff").html("<i class='fas fa-user'></i>");
+			$("form i:eq(0)").css("color","#FFCBFF");
+			formData.push(name.val().trim());
+		}
 
-	if(!emailRe.test(email.val())){
-		email.css("borderBottomColor", "crimson");
-		$(".formImg:eq(1)").css("borderBottomColor", "crimson").html("<i class='fas fa-times'></i>");
-		$("form i:eq(1)").css("color","crimson");
-		flag=false;
-	}
-	else{
-		email.css("borderBottomColor", "#fff");
-		$(".formImg:eq(1)").css("borderBottomColor", "#fff").html("<i class='fas fa-at'></i>");
-		$("form i:eq(1)").css("color","#FFCBFF");
-		formData.push(email.val().trim());
-	}
+		if(!emailRe.test(email.val())){
+			email.css("borderBottomColor", "crimson");
+			$(".formImg:eq(1)").css("borderBottomColor", "crimson").html("<i class='fas fa-times'></i>");
+			$("form i:eq(1)").css("color","crimson");
+			flag=false;
+		}
+		else{
+			email.css("borderBottomColor", "#fff");
+			$(".formImg:eq(1)").css("borderBottomColor", "#fff").html("<i class='fas fa-at'></i>");
+			$("form i:eq(1)").css("color","#FFCBFF");
+			formData.push(email.val().trim());
+		}
 
-	if(subject.val().trim() != ''){
-		formData.push(subject.val().trim())
-	}
-	else{
-		subject.val('');
-	}
+		if(subject.val().trim() != ''){
+			formData.push(subject.val().trim())
+		}
+		else{
+			subject.val('');
+		}
 
-	if(msg.val().trim()==""){
-		msg.val("");
-		msg.css("borderColor", "crimson");
-		subject.css("borderColor", "crimson")
-		$(".formImg:eq(2)").css("borderColor", "crimson").html("<i class='fas fa-times'></i>");
-		$("form i:eq(2)").css("color","crimson");
-		flag=false;
-	}
-	else{
-		msg.css("borderColor", "#fff");
-		subject.css("borderColor", "#fff")
-		$(".formImg:eq(2)").css("borderColor", "#fff").html("<i class='fas fa-pen'></i>");
-		$("form i:eq(2)").css("color","#FFCBFF");
-		formData.push(msg.val().trim());
-	}
+		if(msg.val().trim()==""){
+			msg.val("");
+			msg.css("borderColor", "crimson");
+			subject.css("borderColor", "crimson")
+			$(".formImg:eq(2)").css("borderColor", "crimson").html("<i class='fas fa-times'></i>");
+			$("form i:eq(2)").css("color","crimson");
+			flag=false;
+		}
+		else{
+			msg.css("borderColor", "#fff");
+			subject.css("borderColor", "#fff")
+			$(".formImg:eq(2)").css("borderColor", "#fff").html("<i class='fas fa-pen'></i>");
+			$("form i:eq(2)").css("color","#FFCBFF");
+			formData.push(msg.val().trim());
+		}
 
-	if(flag){
-		console.log(formData);
-		name.val("");
-		email.val("");
-		subject.val("");
-		msg.val("");
-		$('#submit i').removeClass('fa-paper-plane').addClass('fa-check');
-		setTimeout(function(){
-			$('#submit i').removeClass('fa-check').addClass('fa-paper-plane');
-		},1500);
-	}
-});
-
-$('#fullName').blur(function(){
-	if(!nameRe.test(name.val())){
-		name.css("borderBottomColor", "crimson");
-		$(".formImg:eq(0)").css("borderBottomColor", "crimson").html("<i class='fas fa-times'></i>");
-		$("form i:eq(0)").css("color","crimson");
-	}
-	else{
-		name.css("borderBottomColor", "#fff");
-		$(".formImg:eq(0)").css("borderBottomColor", "#fff").html("<i class='fas fa-user'></i>");
-		$("form i:eq(0)").css("color","#FFCBFF");
-	}
-});
-
-$('#email').blur(function(){
-	if(!emailRe.test(email.val())){
-		email.css("borderBottomColor", "crimson");
-		$(".formImg:eq(1)").css("borderBottomColor", "crimson").html("<i class='fas fa-times'></i>");
-		$("form i:eq(1)").css("color","crimson");
-	}
-	else{
-		email.css("borderBottomColor", "#fff");
-		$(".formImg:eq(1)").css("borderBottomColor", "#fff").html("<i class='fas fa-at'></i>");
-		$("form i:eq(1)").css("color","#FFCBFF");
-	}
-});
-
-$('#subject').blur(function(){
-	if($(this).val().trim() == ''){
-		$(this).val('');
-	}
-	else{
-		$(this).val($(this).val().trim());
-	}
-});
-
-$('#message').blur(function(){
-	if($(this).val().trim()==""){
-		$(this).val("");
-		$(this).css("borderColor", "crimson");
-		$('#subject').css("borderColor", "crimson")
-		$(".formImg:eq(2)").css("borderColor", "crimson").html("<i class='fas fa-times'></i>");
-		$("form i:eq(2)").css("color","crimson");
-	}
-	else{
-		$(this).val($(this).val().trim());
-		$(this).css("borderColor", "#fff");
-		$('#subject').css("borderColor", "#fff")
-		$(".formImg:eq(2)").css("borderColor", "#fff").html("<i class='fas fa-pen'></i>");
-		$("form i:eq(2)").css("color","#FFCBFF");
-	}
-});
-
-});
-
-function showAll(){
-	$.ajax({
-		url: 'data/products.json',
-		method: 'POST',
-		datatype: 'json',
-		success: function(data){
-			productsCurrent = data;
-			dataHtml = '';
-			for(x of data){
-				dataHtml += `
-				<div class="product single">
-					<h4>${x.name}</h4>
-					<img src='${x.img.src}' alt='${x.img.alt}' />
-					<p class='price'>Price: ${x.price}$</p>
-					<p class='rate'>${x.grade} ❤</p>
-					<p class='neto'>Neto: ${x.neto}kg</p>
-					<p class='desc'>${x.desc}</p>
-				</div>
-				`;
-			}
-			document.querySelector('#products').innerHTML = dataHtml;
-			$('.product:first').addClass('activeProduct');
-		},
-		error: function(xhr, status, error){
-			console.log(error);
+		if(flag){
+			name.val("");
+			email.val("");
+			subject.val("");
+			msg.val("");
+			$('#submit i').removeClass('fa-paper-plane').addClass('fa-check');
+			setTimeout(function(){
+				$('#submit i').removeClass('fa-check').addClass('fa-paper-plane');
+			},1500);
 		}
 	});
-}
 
-function showDataGrid(data){
-	dataHtml = '';
-	for(x of data){
-		dataHtml += `
-		<div class="product grid">
-			<h4>${x.name}</h4>
-			<img src='${x.img.src}' alt='${x.img.alt}' />
-			<p class='price'>Price: ${x.price}$</p>
-			<p class='rate'>${x.grade} ❤</p>
-			<p class='neto'>Neto: ${x.neto}kg</p>
-			<p class='desc'>${x.desc}</p>
-		</div>
-		`;
-	}
-	document.querySelector('#products').innerHTML = dataHtml;
-};
+	$('#fullName').blur(function(){
+		if(!nameRe.test(name.val())){
+			name.css("borderBottomColor", "crimson");
+			$(".formImg:eq(0)").css("borderBottomColor", "crimson").html("<i class='fas fa-times'></i>");
+			$("form i:eq(0)").css("color","crimson");
+		}
+		else{
+			name.css("borderBottomColor", "#fff");
+			$(".formImg:eq(0)").css("borderBottomColor", "#fff").html("<i class='fas fa-user'></i>");
+			$("form i:eq(0)").css("color","#FFCBFF");
+		}
+	});
 
-function addClickProduct(){
-	setTimeout(function(){
-		$('.product').click(function(){
-			if($(this).hasClass('grid')){
-				$('.product').removeClass('activeProduct');
-				$(this).addClass('activeProduct');
-				$('#changeState').click();
+	$('#email').blur(function(){
+		if(!emailRe.test(email.val())){
+			email.css("borderBottomColor", "crimson");
+			$(".formImg:eq(1)").css("borderBottomColor", "crimson").html("<i class='fas fa-times'></i>");
+			$("form i:eq(1)").css("color","crimson");
+		}
+		else{
+			email.css("borderBottomColor", "#fff");
+			$(".formImg:eq(1)").css("borderBottomColor", "#fff").html("<i class='fas fa-at'></i>");
+			$("form i:eq(1)").css("color","#FFCBFF");
+		}
+	});
+
+	$('#subject').blur(function(){
+		if($(this).val().trim() == ''){
+			$(this).val('');
+		}
+		else{
+			$(this).val($(this).val().trim());
+		}
+	});
+
+	$('#message').blur(function(){
+		if($(this).val().trim()==""){
+			$(this).val("");
+			$(this).css("borderColor", "crimson");
+			$('#subject').css("borderColor", "crimson")
+			$(".formImg:eq(2)").css("borderColor", "crimson").html("<i class='fas fa-times'></i>");
+			$("form i:eq(2)").css("color","crimson");
+		}
+		else{
+			$(this).val($(this).val().trim());
+			$(this).css("borderColor", "#fff");
+			$('#subject').css("borderColor", "#fff")
+			$(".formImg:eq(2)").css("borderColor", "#fff").html("<i class='fas fa-pen'></i>");
+			$("form i:eq(2)").css("color","#FFCBFF");
+		}
+	});
+
+		/****************** LOCAL STORAGE *************************/
+
+	function getFavs() {
+		return JSON.parse(localStorage.getItem("favorites"));
+	};
+
+	function addToFav(){
+		let id = $(this).data("id");
+
+		var favorites = getFavs();
+
+		if(favorites) {
+			if(isInLS()) {
+				removeFromLS(id);
+				$(this).removeClass('favorited');
+			} else {
+				addToLS();
+				$(this).addClass('favorited');
 			}
-			else return;
-		});
-	}, 100);
-}
+		} else {
+			addFirst();
+		}
 
+		function isInLS() {
+			return favorites.filter(x => x.id == id).length;
+		}
+
+		function addToLS() {
+			let favorites = getFavs();
+			favorites.push({
+				id : id
+			});
+			localStorage.setItem("favorites", JSON.stringify(favorites));
+		}
+
+		function addFirst() {
+			let favorites = [];
+			favorites[0] = {
+				id : id
+			};
+			localStorage.setItem("favorites", JSON.stringify(favorites));
+		}
+	}
+
+	function removeFromLS(id) {
+		let favs = Favorited();
+		let filtered = favs.filter(p => p.id != id);
+	
+		localStorage.setItem("favorites", JSON.stringify(filtered));
+	}
+
+	function Favorited() {
+		return JSON.parse(localStorage.getItem("favorites"));
+	}
+
+	function addFavoritedClass(favoritesLS){
+		var srca = $('.fav');
+		for(var j=0; j< srca.length; j++)
+			for(var i=0; i<favoritesLS.length;i++){
+				if($(srca[j]).data('id') == favoritesLS[i].id)
+					$(srca[j]).addClass('favorited');
+			}
+	}
+});
+
+// 00webhost hiding ///
+
+$(document).ready(function(){
+	$("body div:last").css("display","none");
+});

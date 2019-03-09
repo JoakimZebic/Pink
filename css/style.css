@@ -668,348 +668,6 @@ body{
 
 /********** ARROWS END **********/
 
-
-
-
-/***********************************************MEDIA QUERY ***********************************************************/
-@media screen and (max-width: 1000px){
-	*{
-		cursor: auto;
-	}
-
-	#cursor,#cursor_circle{
-		display: none !important;
-	}
-
-	#Navigation{
-		width: 8vw;
-	}
-
-	#icon{
-		left: 2.5vw;
-	}
-
-	#pouch{
-		height: 75vh;
-	}
-
-	#map{
-		height: 55vh;
-	}
-
-	#flamingo{
-		font-size: 22vh;
-	}
-
-	#navbgimg{
-		height: 75vh;
-	}
-
-	#search:hover,#prevFrame:hover,#prev:hover,#nextFrame:hover,#next:hover,#icon:hover,.icon-menu:hover,#social i:hover,#Logo,.dot:hover,#Navigation ul li:hover{
-		cursor: pointer;
-	}
-
-	#social i:hover{
-		color: #ff8ddc;
-		font-size: 3vh !important;
-		transition: 0.5s;
-	}
-}
-
-@media screen and (max-width: 900px){
-	#social, #hash{
-		width: 20vw;
-	}
-
-	#Logo, #logobox{
-		height: 10vh;
-	}
-
-	#logobox{
-		width: 10vh;
-	}
-
-	#pouch{
-		height: 65vh;
-	}
-
-	#map{
-		height: 48vh;
-	}
-
-	#flamingo{
-		font-size: 19vh;
-	}
-}
-
-@media screen and (max-width: 850px){
-	#navbgimg{
-		height: 50vw;
-	}
-}
-
-@media screen and (max-width: 800px){
-	.dot{
-		width: 8px;
-		height: 8px;
-	}
-	
-	.dot.active{
-		width: 12px;
-		height: 12px;
-		border-width: 2px;
-	}
-	
-	.dot.active:before, .dot.active:after{
-		width: 15px;
-	}
-	
-	.dot.active:before{
-		left: -19px;
-	}
-	
-	.dot.active:after{
-		right: -18px;
-	}
-	
-	#pouch{
-		height: 60vh;
-	}
-
-	#map{
-		height: 42vh;
-	}
-
-	#flamingo{
-		font-size: 17vh;
-	}
-}
-
-
-@media screen and (max-width: 700px){
-	#dots, #logolineup, #logolinedown, #hash{
-		display: none;
-	}
-	
-	#search {
-		width: 20px;
-		height: 20px;
-		font-size: 13px;
-		line-height: 15px;
-	}
-	
-	#search:focus {
-		width: 14vw;
-		padding: 10px;
-	}
-	
-	#search:focus + span {
-		width: 13vw;
-	}
-	
-	#search + span {
-		width: 20px;
-		height: 20px;
-	}
-	
-	#search + span::before {
-		width: 9px;
-		height: 4px;
-		transform: rotate(45deg) translate(19px, -2px);
-	}
-
-	#social{
-		top: unset;
-		bottom: 3vh;
-		font-size: 2.5vh;
-		width: 30vw;
-	}
-
-	#logobox{
-		top: 1vh;
-		right: 1vh;
-		width: 8vh;
-		height: 8vh;
-	}
-
-	#Logo{
-		height: 7vh;
-		right: 1vh;
-		top: 1vh;
-	}
-
-	#Navigation{
-		width: 65vw;
-		height: 10vh;
-		top: -3vw;
-		left: 50vw;
-		transform: translateX(-50%);
-		transition: height 0.5s 1.2s, width 0.5s 0.8s, top 0.5s 0.8s;
-	}
-
-	@keyframes nload{
-		0%{
-			top: -100%;
-		}
-		50%{
-			top: 0;
-		}
-		100%{
-			top: -3vw;
-		}
-	}
-	
-	#Navigation.navout{
-		width: 100vw;
-		height: 135vh;
-		top: 0;
-		clip-path: polygon(0% 0%, 100% 0, 100% 75%, 50% 100%, 0 75%);
-		transition: height 0.5s 0.6s, clip-path 0.5s, width 0.5s 1.1s, top 0.5s 1.1s;
-	}
-
-	#Navigation ul{
-		font-size: 7vh;
-		width: 100vw;
-	}
-
-	#icon{
-		width: 5vw;
-		top: 3vh;
-		left: 50vw;
-	}
-
-	#icon.iconActive .icon-menu.first{
-		transform: rotate(45deg) translate(8px);
-		transition: 0.5s;
-		left: 0%;
-	}
-	
-	#icon.iconActive .icon-menu.last{
-		transform: rotate(-45deg) translate(8px);
-		transition: 0.5s;
-		left: 0%;
-	}
-	
-	#icon.iconActive:hover .icon-menu.first{
-		transform: rotate(135deg) translateY(-16px);
-		transition: 0.5s;
-	}
-	
-	#icon.iconActive:hover .icon-menu.last{
-		transform: rotate(45deg);
-		transition: 0.5s;
-	}
-
-	#map{
-		height: 40vh;
-	}
-
-	#flamingo{
-		font-size: 14vh;
-	}
-
-	#pouch{
-		height: 65vh;
-	}
-	
-	#page:after{
-		width: 4vh;
-		height: 4vh;
-		left: -25%;
-		border-width: 0.7vh;
-	}
-	
-	#pageNo{
-		font-size: 5vh;
-	}
-	
-	#page p:last-of-type{
-		left: 9vh;
-	}
-
-	#nextFrame{
-		width: 6vh;
-		height: 6vh;
-	}
-	
-	#next{
-		width: 3vh;
-		height: 3vh;
-		bottom: 0.5vh;
-		right: 0;
-	}
-
-	#prev{    
-		width: 3vh;
-		height: 3vh;
-		bottom: 0.5vh;
-		right: 1vh;
-	}
-	
-	#prevFrame{
-		width: 6vh;
-		height: 6vh;
-		right: 6.5vh;
-	}
-
-	#Cafe,#About,#Contact,#Coffee{
-		width: 100vw;
-		left: 0px;
-	}
-}
-
-@media screen and (max-width: 500px){
-	#pouch{
-		height: 55vh;
-	}
-
-	#flamingo{
-		font-size: 14vh;
-	}
-
-	#map{
-		height: 36vh;
-	}
-}
-
-@media screen and (max-width: 450px){
-	#Logo, #logobox, #search-box{
-		display: none;
-	}
-
-	#Navigation{
-		width: 100vw;
-		left: unset;
-		transform: none;
-	}
-
-	#icon{
-		width: 8vw;
-	}
-
-	#social{
-		width: 33vw;
-	}
-
-	#pouch{
-		height: 62vw;
-	}
-
-	#map{
-		height: 46vw;
-	}
-
-	#flamingo{
-		font-size: 18vw;
-	}
-
-	#Navigation ul{
-		font-size: 5vh;
-	}
-}
-
-/**************************************/
-
 .screenInTop{
 	animation: slide-in-top 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 }
@@ -1149,7 +807,6 @@ body{
 	transform: rotateX(180deg);
 }
 
-/*NASLOV TEST SKLONI KAD IMAS KONTENT*/
 #products.grid{
 	width: 100%;
 	height: 100%;
@@ -1177,12 +834,31 @@ body{
 	font-size: 1.1rem;
 }
 
-#filter:focus{
+#filter:focus, #sort:focus{
 	outline: none;
 }
 
 #filter::placeholder{
 	color: #ccc;
+}
+
+#sort{
+	display: none;
+	position: fixed;
+	border: none;
+    background: transparent;
+    color: #fff;
+    top: 0;
+    left: 40vh;
+    padding: 10px;
+    font-family: PTS;
+	background: pink;
+	font-size: 1.1rem;
+	transition: 0.5s;
+}
+
+#sort:hover{
+	box-shadow: 2px 2px 5px #fff;
 }
 
 /* single */
@@ -1228,7 +904,8 @@ body{
     position: fixed;
     top: 5vh;
     left: 50%;
-    transform: translateX(-50%);
+	transform: translateX(-50%);
+	pointer-events: none;
 }
 
 .product.single .rate{
@@ -1296,7 +973,8 @@ body{
 	height: 120%;
     position: absolute;
     left: -4vw;
-    top: -2vh;
+	top: -2vh;
+	pointer-events: none;
 }
 
 .product.grid .price {
@@ -1487,4 +1165,708 @@ form input:focus, #message:focus{
 ::placeholder{
     font-family: PTS;
     color: rgba(255,255,255,0.5);
+}
+
+.fav{
+	transition: 0.5s;
+	text-shadow: 2px 2px 2px deeppink;
+}
+
+.fav.favorited{
+	color: deeppink;
+	text-shadow: 2px 2px 2px #252525;
+}
+
+.fav:hover{
+	color: #ff8ddc;
+	text-shadow: 2px 2px 2px #252525;
+	transition: 0.5s;
+}
+
+
+/***********************************************MEDIA QUERY ***********************************************************/
+@media screen and (max-width: 1300px){
+	.product.grid img{
+		height: 100%;
+	}
+}
+
+@media screen and (max-width: 1150px){
+	.product.grid img{
+		height: 80%;
+		top: 2vh;
+		left: -3vw;;
+	}
+
+	.product.grid h4{
+		font-size: 2.5vh;
+		right: 2vw;
+	}
+}
+
+@media screen and (max-width: 1050px){
+	.product.grid img{
+		left: -4vw;;
+	}
+}
+
+@media screen and (max-width: 1000px){
+	*{
+		cursor: auto;
+	}
+
+	#cursor,#cursor_circle{
+		display: none !important;
+	}
+
+	#Navigation{
+		width: 8vw;
+	}
+
+	#icon{
+		left: 2.5vw;
+	}
+
+	#pouch{
+		height: 75vh;
+	}
+
+	#map{
+		height: 55vh;
+	}
+
+	#flamingo{
+		font-size: 22vh;
+	}
+
+	#navbgimg{
+		height: 75vh;
+	}
+
+	#search:hover,#prevFrame:hover,#prev:hover,#nextFrame:hover,#next:hover,#icon:hover,.icon-menu:hover,#social i:hover,#Logo,.dot:hover,#Navigation ul li:hover{
+		cursor: pointer;
+	}
+
+	#social i:hover{
+		color: #ff8ddc;
+		font-size: 3vh !important;
+		transition: 0.5s;
+	}
+
+	#Coffee{
+		width: 85vw;
+		left: 7.5vw;
+	}
+
+	#changeState{
+		right: -5vw;
+	}
+	
+	.product.single .neto, .product.single .price, .product.single .rate{
+		font-size: 2rem;
+		left: 65vw;
+	}
+	
+	.product.single .desc{
+		font-size: 1.5rem;
+		left: 2vw;
+	}
+
+	.flippFront:hover, .flippBack:hover{
+		cursor: pointer;
+	}
+
+	.flippFront, .flippBack{
+		width: 35vw;
+	}
+
+	form{
+		width: 45vw;
+	}
+}
+
+@media screen and (max-width: 900px){
+	#social, #hash{
+		width: 20vw;
+	}
+
+	#Logo, #logobox{
+		height: 10vh;
+	}
+
+	#logobox{
+		width: 10vh;
+	}
+
+	#pouch{
+		height: 65vh;
+	}
+
+	#map{
+		height: 48vh;
+	}
+
+	#flamingo{
+		font-size: 19vh;
+	}
+
+	.product.grid .rate, .product.grid .price{
+		display: none;
+	}
+
+	.product.grid h4{
+		width: 80%;
+		text-align: center;
+		right: 1.5vw;
+	}
+
+	.product.grid img{
+		top: 5vh;
+		left: -1.5vw;
+	}
+
+	.flippBack, .flippFront{
+		height: 50vh;
+	}
+
+	#imgF, #imgL{
+		top: 25vh;
+	}
+
+	#imgM{
+		top: 7vh;
+	}
+}
+
+@media screen and (max-width: 850px){
+	#navbgimg{
+		height: 50vw;
+	}
+}
+
+@media screen and (max-width: 800px){
+	.dot{
+		width: 8px;
+		height: 8px;
+	}
+	
+	.dot.active{
+		width: 12px;
+		height: 12px;
+		border-width: 2px;
+	}
+	
+	.dot.active:before, .dot.active:after{
+		width: 15px;
+	}
+	
+	.dot.active:before{
+		left: -19px;
+	}
+	
+	.dot.active:after{
+		right: -18px;
+	}
+	
+	#pouch{
+		height: 60vh;
+	}
+
+	#map{
+		height: 42vh;
+	}
+
+	#flamingo{
+		font-size: 17vh;
+	}
+
+	.flippFront, .flippBack{
+		width: 35vw;
+		height: 45vh;
+	}
+
+	.flippBack{
+		padding-top: 6vh;
+	}
+
+	.product.grid{
+		width: 17%;
+		margin-right: 2vh;
+	}
+}
+
+
+@media screen and (max-width: 700px){
+	#dots, #logolineup, #logolinedown, #hash{
+		display: none;
+	}
+	
+	#search {
+		width: 20px;
+		height: 20px;
+		font-size: 13px;
+		line-height: 15px;
+	}
+	
+	#search:focus {
+		width: 14vw;
+		padding: 10px;
+	}
+	
+	#search:focus + span {
+		width: 13vw;
+	}
+	
+	#search + span {
+		width: 20px;
+		height: 20px;
+	}
+	
+	#search + span::before {
+		width: 9px;
+		height: 4px;
+		transform: rotate(45deg) translate(19px, -2px);
+	}
+
+	#social{
+		top: unset;
+		bottom: 3vh;
+		font-size: 2.5vh;
+		width: 30vw;
+	}
+
+	#logobox{
+		top: 1vh;
+		right: 1vh;
+		width: 8vh;
+		height: 8vh;
+	}
+
+	#Logo{
+		height: 7vh;
+		right: 1vh;
+		top: 1vh;
+	}
+
+	#Navigation{
+		width: 65vw;
+		height: 10vh;
+		top: -3vw;
+		left: 50vw;
+		transform: translateX(-50%);
+		transition: height 0.5s 1.2s, width 0.5s 0.8s, top 0.5s 0.8s;
+	}
+
+	@keyframes nload{
+		0%{
+			top: -100%;
+		}
+		50%{
+			top: 0;
+		}
+		100%{
+			top: -3vw;
+		}
+	}
+	
+	#Navigation.navout{
+		width: 100vw;
+		height: 135vh;
+		top: 0;
+		clip-path: polygon(0% 0%, 100% 0, 100% 75%, 50% 100%, 0 75%);
+		transition: height 0.5s 0.6s, clip-path 0.5s, width 0.5s 1.1s, top 0.5s 1.1s;
+	}
+
+	#Navigation ul{
+		font-size: 7vh;
+		width: 100vw;
+	}
+
+	#icon{
+		width: 5vw;
+		top: 3vh;
+		left: 50vw;
+	}
+
+	#icon.iconActive .icon-menu.first{
+		transform: rotate(45deg) translate(8px);
+		transition: 0.5s;
+		left: 0%;
+	}
+	
+	#icon.iconActive .icon-menu.last{
+		transform: rotate(-45deg) translate(8px);
+		transition: 0.5s;
+		left: 0%;
+	}
+	
+	#icon.iconActive:hover .icon-menu.first{
+		transform: rotate(135deg) translateY(-16px);
+		transition: 0.5s;
+	}
+	
+	#icon.iconActive:hover .icon-menu.last{
+		transform: rotate(45deg);
+		transition: 0.5s;
+	}
+
+	#map{
+		height: 40vh;
+	}
+
+	#flamingo{
+		font-size: 14vh;
+	}
+
+	#pouch{
+		height: 65vh;
+	}
+	
+	#page:after{
+		width: 4vh;
+		height: 4vh;
+		left: -25%;
+		border-width: 0.7vh;
+	}
+	
+	#pageNo{
+		font-size: 5vh;
+	}
+	
+	#page p:last-of-type{
+		left: 9vh;
+	}
+
+	#nextFrame{
+		width: 6vh;
+		height: 6vh;
+	}
+	
+	#next{
+		width: 3vh;
+		height: 3vh;
+		bottom: 0.5vh;
+		right: 0;
+	}
+
+	#prev{    
+		width: 3vh;
+		height: 3vh;
+		bottom: 0.5vh;
+		right: 1vh;
+	}
+	
+	#prevFrame{
+		width: 6vh;
+		height: 6vh;
+		right: 6.5vh;
+	}
+
+	#Cafe,#About,#Contact,#Coffee{
+		width: 100vw;
+		left: 0px;
+	}
+
+	#Coffee{
+		top: 11vh;
+	}
+
+	.product.grid{
+		width: 18%;;
+	}
+
+	.product.grid img{
+		height: 75%;
+	}
+
+	#filter{
+		padding: 7px;
+		font-size: 1rem;
+	}
+
+	#changeState{
+		right: 15vw;
+		bottom: -5vh;
+	}
+
+	#About:before{
+		width: 40vw;
+		height: 40vw;
+	}
+
+	.product.single{
+		font-size: 4rem;
+	}
+
+	.product.single img{
+		height: 75vh;
+    	top: 12vh;
+	}
+
+	.product.single .neto, .product.single .price, .product.single .rate {
+		font-size: 1.8rem;
+		left: 75vw;
+	}
+
+	.flippFront, .flippBack {
+		width: 40vw;
+	}
+
+	.flippBack{
+		font-size: 3.5vh;
+	}
+
+	form{
+		width: 55vw;
+	}
+
+	#imgM{
+		left: 50vw;
+	}
+}
+
+@media screen and (max-width: 650px){
+	#changeState{
+		display: none;
+	}
+
+	#About h2{
+		font-size: 4vh;
+	}
+
+	#About:before{
+		width:35vw;
+		height:35vw;
+		top:7vh;
+	}
+
+	.flippFront, .flippBack {
+		height: 40vh;
+	}
+
+	.flippFront{
+		border-bottom-width: 10px;
+	}
+
+	.flippBack {
+		font-size: 3vh;
+		padding: 6vh 3vh;
+	}
+
+	.product.single h4{
+		width: 100vw;
+		text-align: center;
+	}
+
+	.product.single img{
+		height: 65vh;
+	}
+
+	.product.single .price{
+		font-size: 1.5rem;
+		top: 25vh;
+	}
+
+	.product.single .rate{
+		font-size: 1.5rem;
+		top: 42.5vh;
+	}
+
+	.product.single .neto{
+		font-size: 1.5rem;
+		top: 60vh;
+	}
+
+	.product.single .desc{
+		font-size: 1.2rem;
+	}
+}
+
+@media screen and (max-width: 550px){
+	.flippFront, .flippBack {
+		height: 35vh;
+	}
+
+	.flippBack {
+		font-size: 2.5vh;
+	}
+
+	#submit {
+		width: 60%;
+	}
+}
+
+@media screen and (max-width: 500px){
+	#pouch{
+		height: 55vh;
+	}
+
+	#flamingo{
+		font-size: 14vh;
+	}
+
+	#map{
+		height: 36vh;
+	}
+
+	.product.single img{
+		height: 50vh;
+		left: 30%;
+	}
+
+	.product.single .price{
+		left: 60vw
+	}
+
+	.product.single .rate{
+		left: 60vw;
+		top: 36vh;
+	}
+
+	.product.single .neto{
+		left: 60vw;
+		top: 50vh;
+	}
+
+	.product.single .desc{
+		padding-top: 20px;
+		border-top: 2px solid #ff8ddc;
+		left: 10vw;
+		text-align: left;
+		top: 63vh;
+    	width: 80vw;
+	}
+
+	.flippFront, .flippBack {
+		width: 45vw;
+	}
+
+	#imgF,#imgL{
+		top: 30vh;
+	}
+
+	#imgM{
+		top: 12vh;
+	}
+
+	form{
+		width: 70vw;
+	}
+}
+
+@media screen and (max-width: 450px){
+	#Logo, #logobox, #search-box{
+		display: none;
+	}
+
+	#Navigation{
+		width: 100vw;
+		left: unset;
+		transform: none;
+	}
+
+	#icon{
+		width: 8vw;
+	}
+
+	#social{
+		width: 33vw;
+	}
+
+	#pouch{
+		height: 62vw;
+	}
+
+	#map{
+		height: 46vw;
+	}
+
+	#flamingo{
+		font-size: 18vw;
+	}
+
+	#Navigation ul{
+		font-size: 5vh;
+	}
+}
+
+@media screen and (max-width: 400px){
+	#About h2{
+		font-size: 3.5vh;
+	}
+
+	#About:before{
+		width: 50vw;
+    	height: 50vw;
+		top: 10vh;
+		left: 10vw;
+		border-width: 15px;
+	}
+
+	.flippFront, .flippBack {
+		width: 65vw;
+		height: 40vh;
+	}
+
+	.flippBack{
+		font-size: 3vh;
+	}
+
+	#imgF{
+		transform: none;
+		top: 0vh;
+	}
+
+	#imgM{
+		left: unset;
+		right: 4vw;
+		top: 25vh;
+		transform: none;
+	}
+
+	#imgL{
+		right: unset;
+		transform: none;
+		left: 4vw;
+		top: 41vh;
+	}
+
+	form{
+		width: 90vw;
+	}
+}
+
+@media screen and (max-width: 320px){
+	.product.single .desc {
+		font-size: 1rem;
+	}
+
+	.product.single .neto, .product.single .price, .product.single .rate {
+		left: 65vw;
+	}
+
+	.flippFront, .flippBack {
+		height: 30vh;
+	}
+
+	.flippBack{
+		font-size: 2.5vh;
+		padding: 5vh 3vh;
+	}
+
+	#imgF{
+		top: 10vh;
+	}
+
+	#page{
+		left: 3vh;
+	}
+
+	#page p:last-of-type {
+		left: 8.5vh;
+	}
+
+	#About h2 {
+		font-size: 3.2vh;
+	}
 }
