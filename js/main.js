@@ -157,43 +157,52 @@ $(document).ready(function(){
 	$('#favs').click(function(){
 		if(!favClicked){
 			var favoritesLS = getFavs();
-				
-			$.ajax({
-				url: 'data/products.json',
-				method: 'POST',
-				datatype: 'json',
-				success: function(data){
-					data = data.filter(f => {
-							for(let fav of favoritesLS)
-							{
-								if(f.id == fav.id){
-									return true;
+			if(favoritesLS.length!=0){	
+				$.ajax({
+					url: 'data/products.json',
+					method: 'POST',
+					datatype: 'json',
+					success: function(data){
+						data = data.filter(f => {
+								for(let fav of favoritesLS)
+								{
+									if(f.id == fav.id){
+										return true;
+									}
 								}
+								return false;
+							});
+						showFav(data);
+						$('.product:first').addClass('activeProduct');
+						addClickProduct();
+
+						setTimeout(function(){
+							if(favoritesLS){
+								addFavoritedClass(favoritesLS);
 							}
-							return false;
-						});
-					showFav(data);
-					$('.product:first').addClass('activeProduct');
-					addClickProduct();
+						},100);
+						SaveCurrentProducts(data);
+					},
+					error: function(xhr, status, error){
+						console.log(error);
+					}
+				})
 
-					setTimeout(function(){
-						if(favoritesLS){
-							addFavoritedClass(favoritesLS);
-						}
-					},100);
-					SaveCurrentProducts(data);
-				},
-				error: function(xhr, status, error){
-					console.log(error);
-				}
-			})
+				$('.dot:eq(2)').click();
+				$('.cube').css({width: '1vw', height: '1vw'});
+				$('#filter').css({display: 'none'});
+				$('#sort').css({display: 'none'});
 
-			$('.dot:eq(2)').click();
-			$('.cube').css({width: '1vw', height: '1vw'});
-			$('#filter').css({display: 'none'});
-			$('#sort').css({display: 'none'});
-
-			favClicked=true;
+				favClicked=true;
+			}
+			else{
+				document.querySelector('#products').innerHTML = `<p class='noFavs'>No favorited products to show.</p>`;
+				$('.dot:eq(2)').click();
+				$('.cube').css({width: '1vw', height: '1vw'});
+				$('#filter').css({display: 'none'});
+				$('#sort').css({display: 'none'});
+				favClicked=true;
+			}
 		}
 		else{
 			showAll();

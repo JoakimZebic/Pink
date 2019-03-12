@@ -1183,6 +1183,20 @@ form input:focus, #message:focus{
 	transition: 0.5s;
 }
 
+.noFavs{
+	position: fixed;
+	font-family: PTS;
+	color: #fff;
+	text-shadow: 2px 2px 2px #252525;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	font-size: 5vh;
+	background: #ff8ddc;
+	padding: 20px;
+	box-shadow: 2px 2px 5px #252525;
+	text-align: center;
+}
 
 /***********************************************MEDIA QUERY ***********************************************************/
 @media screen and (max-width: 1300px){
